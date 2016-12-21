@@ -1,12 +1,26 @@
 import React from 'react';
 import axios from 'axios';
+import LinkList from './LinkList.js';
 import './App.css';
 
 
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subredditInfo: false
+    }
+  }
+
   componentWillMount() {
     axios.get('http://www.reddit.com/.json?raw_json=1')
-    .then( (res) => console.log('axios res', res));
+    .then( (res) => {
+      console.log('axios res', res)
+      this.setState({
+        subredditInfo: res
+      });
+    })
   }
 
   render() {
@@ -15,6 +29,7 @@ class App extends React.Component {
         <div className="App-header">
           <h2>Hello Wonder Workshop!</h2>
         </div>
+        {this.state.subredditInfo && <LinkList info={this.state.subredditInfo} />}
       </div>
     );
   }
