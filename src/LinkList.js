@@ -1,20 +1,13 @@
 import React from 'react';
+import Link from './Link';
 
-class LinkList extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log('info', this.props.info.data.data.children);
-  }
-  render() {
-    return (
-      <div>
-        <ul>
-          <li> this is the list </li>
-          <li> this is the list </li>
-        </ul>
-      </div>
-    );
-  }
-}
+const LinkList = ({info}) => (
+  <div>
+    {info.data.data.children.map((item, index) => {
+      console.log('individ item', item.data.author);
+      return <Link key={index} data={item.data}/>
+    })}
+  </div>
+)
 
 export default LinkList;
