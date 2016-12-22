@@ -15,6 +15,7 @@ class App extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitNewTopic = this.submitNewTopic.bind(this);
     this.removeTopic = this.removeTopic.bind(this);
+    this.sortByDate = this.sortByDate.bind(this);
   }
 
   handleInputChange(event) {
@@ -51,6 +52,13 @@ class App extends React.Component {
     })
   }
 
+  sortByDate() {
+    console.log('links info', this.state.linksInfo);
+    this.setState({
+      linksInfo: this.state.linksInfo.sort((a, b) => a.data.created > b.data.created)
+    })
+  }
+
   // Initialize data with reddit front page
   componentDidMount() {
     axios.get(`http://www.reddit.com/.json?raw_json=1`)
@@ -68,6 +76,8 @@ class App extends React.Component {
     })
   }
 
+  // If I had more time, I would refactor everything within the div with "topics-container" class
+  // into its own component to make the code cleaner
   render() {
     return (
       <div>
@@ -87,6 +97,11 @@ class App extends React.Component {
           </div>
           <h3 className="subreddit-label"> Current Subreddits -> </h3>
           <TopicList topics={this.state.subreddits} removeTopic={this.removeTopic}/>
+        </div>
+        <div className="sort-by">
+          <p className="sort-title"> Sort links by: </p>
+          <a href='#' className="sort-options" onClick={this.sortByDate}> date created </a>
+          <a href='#' className="sort-options"> score </a>
         </div>
         {this.state.linksInfo && <LinkList info={this.state.linksInfo} />}
       </div>

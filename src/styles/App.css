@@ -49,5 +49,21 @@
 .subreddit-label {
   margin-left: 5px;
   margin-right: 5px;
+  font-size: 20px;
   font-weight: lighter;
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.sort-title {
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.sort-options {
+  margin-left: 20px;
 }
