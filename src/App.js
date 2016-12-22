@@ -57,7 +57,13 @@ class App extends React.Component {
     .then( (res) => {
       console.log('axios res', res)
       this.setState({
-        linksInfo: res.data.data.children
+        linksInfo: res.data.data.children.map(child => {
+          // Change the front page links subreddit to be 'front' so that remove button will still work
+          return {
+            kind: "t3",
+            data: Object.assign({}, child.data, {subreddit: 'front'})
+          }
+        })
       });
     })
   }
@@ -74,7 +80,7 @@ class App extends React.Component {
             type="text"
             value={this.state.inputText}
             onChange={this.handleInputChange}
-            placeholder="Enter a new subreddit..."
+            placeholder="Add new subreddit..."
           />
           <button className="submit-button" onClick={this.submitNewTopic}>
             +
