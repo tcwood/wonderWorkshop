@@ -14,6 +14,10 @@
 }
 
 .input-box {
-  width: 200px;
+  width: 125px;
+  margin-right: 10px;
+}
+
+.submit-button {
   margin-right: 10px;
 }

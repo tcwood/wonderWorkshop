@@ -51,9 +51,9 @@ class App extends React.Component {
             type="text"
             value={this.state.inputText}
             onChange={this.handleInputChange}
-            placeholder="Enter a new subreddit name here..."
+            placeholder="Enter a new subreddit..."
           />
-          <button onClick={this.submitNewTopic}>
+          <button className="submit-button" onClick={this.submitNewTopic}>
             add
           </button>
           <TopicList topics={this.state.subreddits}/>
