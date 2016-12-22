@@ -1,14 +1,25 @@
+.topic-container {
+  display: flex;
+  border-radius: 10px;
+  background-color: #9fb7dd;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+}
+
 .topic {
-	margin-right: 10px;
+  padding: 3px;
+  font-size: 30px;
 }
 
 .remove-button {
   margin-right: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  line-height: 10px;
-  font-size: 50px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  line-height: 15px;
+  font-size: 30px;
   background-color: #db8585;
   color: white;
 }

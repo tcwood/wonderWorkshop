@@ -24,8 +24,6 @@ class App extends React.Component {
   }
 
   submitNewTopic() {
-    console.log('structure of info', this.state.linksInfo);
-
     // There is a different request format if it is the front page vs. other subreddits
     let urlChunk = this.state.inputText === 'front' ? `` : `r/${this.state.inputText}`
 
@@ -45,6 +43,7 @@ class App extends React.Component {
     });
   }
 
+  // Removes the links with the matching subredit name as well as the subreddit from the topic list
   removeTopic(topic) {
     this.setState({
       linksInfo: this.state.linksInfo.filter(link => link.data.subreddit !== topic),
@@ -52,13 +51,14 @@ class App extends React.Component {
     })
   }
 
+  // Initialize data with reddit front page
   componentDidMount() {
     axios.get(`http://www.reddit.com/.json?raw_json=1`)
     .then( (res) => {
       console.log('axios res', res)
       this.setState({
         linksInfo: res.data.data.children.map(child => {
-          // Change the front page links subreddit to be 'front' so that remove button will still work
+          // Change the front page links subreddit property to be 'front' so that remove button will still work
           return {
             kind: "t3",
             data: Object.assign({}, child.data, {subreddit: 'front'})
@@ -74,17 +74,17 @@ class App extends React.Component {
         <div className="App-header">
           <h2>Hello Wonder Workshop!</h2>
         </div>
-        <div className="topic-container">
-          <input
-            className="input-box"
-            type="text"
-            value={this.state.inputText}
-            onChange={this.handleInputChange}
-            placeholder="Add new subreddit..."
-          />
-          <button className="submit-button" onClick={this.submitNewTopic}>
-            +
-          </button>
+        <div className="topics-container">
+          <div className="input">
+            <input
+              className="input-box"
+              type="text"
+              value={this.state.inputText}
+              onChange={this.handleInputChange}
+              placeholder="Add new subreddit..."
+            />
+            <button className="submit-button" onClick={this.submitNewTopic}>+</button>
+          </div>
           <TopicList topics={this.state.subreddits} removeTopic={this.removeTopic}/>
         </div>
         {this.state.linksInfo && <LinkList info={this.state.linksInfo} />}
