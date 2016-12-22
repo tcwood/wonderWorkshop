@@ -23,14 +23,26 @@ class App extends React.Component {
   }
 
   submitNewTopic() {
-    this.setState({
-      subreddits: [...this.state.subreddits, this.state.inputText],
-      inputText: ''
+    let urlChunk = this.state.inputText === 'front' ? `` : `r/${this.state.inputText}`
+
+    axios.get(`http://www.reddit.com/${urlChunk}.json?raw_json=1`)
+    .then( res => {
+      this.setState({
+        subreddits: [...this.state.subreddits, this.state.inputText],
+        inputText: ''
+      })
+      console.log('great success!')
+    })
+    .catch( err => {
+      alert(`Uh oh, ${this.state.inputText} isn't a real subreddit... Try again!`);
+      this.setState({
+        inputText: ''
+      })
     });
   }
 
   componentWillMount() {
-    axios.get('http://www.reddit.com/.json?raw_json=1')
+    axios.get(`http://www.reddit.com/.json?raw_json=1`)
     .then( (res) => {
       console.log('axios res', res)
       this.setState({
