@@ -88,7 +88,7 @@ class App extends React.Component {
   }
 
   // If I had more time, I would refactor everything within the div with "topics-container" class
-  // into its own component to make the code cleaner
+  // into its own component as well as everything within "sort-by" in a separate one to make the code cleaner.
   render() {
     return (
       <div>
