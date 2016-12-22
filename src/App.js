@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       subreddits: ['front'],
-      subredditInfo: false,
+      linksInfo: false,
       inputText: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,6 +29,7 @@ class App extends React.Component {
     .then( res => {
       this.setState({
         subreddits: [...this.state.subreddits, this.state.inputText],
+        linksInfo: [...this.state.linksInfo, ...res.data.data.children],
         inputText: ''
       })
       console.log('great success!')
@@ -41,12 +42,12 @@ class App extends React.Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get(`http://www.reddit.com/.json?raw_json=1`)
     .then( (res) => {
       console.log('axios res', res)
       this.setState({
-        subredditInfo: res
+        linksInfo: res.data.data.children
       });
     })
   }
@@ -70,7 +71,7 @@ class App extends React.Component {
           </button>
           <TopicList topics={this.state.subreddits}/>
         </div>
-        {this.state.subredditInfo && <LinkList info={this.state.subredditInfo} />}
+        {this.state.linksInfo && <LinkList info={this.state.linksInfo} />}
       </div>
     );
   }
