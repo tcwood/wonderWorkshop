@@ -11,8 +11,8 @@
 
 .topic-container {
 	display: flex;
+	height: 100;
 }
-
 .input-box {
   width: 125px;
   margin-right: 10px;
@@ -20,4 +20,11 @@
 
 .submit-button {
   margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 40px;
+  line-height: 10px;
+  background-color: #7ea566;
+  color: white;
 }

@@ -6,6 +6,7 @@ const Topic = ({topic}) => (
     <span className="topic">
       <p> {topic} </p>
     </span>
+    <button className="remove-button"> - </button>
   </div>
 );
 

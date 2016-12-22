@@ -67,7 +67,7 @@ class App extends React.Component {
             placeholder="Enter a new subreddit..."
           />
           <button className="submit-button" onClick={this.submitNewTopic}>
-            add
+            +
           </button>
           <TopicList topics={this.state.subreddits}/>
         </div>
