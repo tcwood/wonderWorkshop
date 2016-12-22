@@ -8,3 +8,12 @@
   padding: 20px;
   color: white;
 }
+
+.topic-container {
+	display: flex;
+}
+
+.input-box {
+  width: 200px;
+  margin-right: 10px;
+}

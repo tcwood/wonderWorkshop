@@ -4,10 +4,9 @@ import './styles/LinkList.css';
 
 const LinkList = ({info}) => (
   <div className="LinkList">
-    {info.data.data.children.map((item, index) => {
-      console.log('individ item', item.data.author);
-      return <Link key={index} data={item.data}/>
-    })}
+    {info.data.data.children.map((item, index) => 
+      (<Link key={index} data={item.data}/>)
+    )}
   </div>
 )
 
