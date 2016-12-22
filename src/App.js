@@ -16,6 +16,7 @@ class App extends React.Component {
     this.submitNewTopic = this.submitNewTopic.bind(this);
     this.removeTopic = this.removeTopic.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
+    this.sortByScore = this.sortByScore.bind(this);
   }
 
   handleInputChange(event) {
@@ -52,10 +53,20 @@ class App extends React.Component {
     })
   }
 
+  // This will only sort in descending order for the moment. If I had more time I would create a boolean
+  // to track if it is already sorted by score and flip the comparator if it is to toggle the sort
   sortByDate() {
     console.log('links info', this.state.linksInfo);
     this.setState({
-      linksInfo: this.state.linksInfo.sort((a, b) => a.data.created > b.data.created)
+      linksInfo: this.state.linksInfo.sort((a, b) => b.data.created - a.data.created)
+    })
+  }
+
+  // This will only sort in descending order for the moment. If I had more time I would create a boolean
+  // to track if it is already sorted by score and flip the comparator if it is to toggle the sort
+  sortByScore() {
+    this.setState({
+      linksInfo: this.state.linksInfo.sort((a, b) => b.data.score - a.data.score)
     })
   }
 
@@ -101,7 +112,7 @@ class App extends React.Component {
         <div className="sort-by">
           <p className="sort-title"> Sort links by: </p>
           <a href='#' className="sort-options" onClick={this.sortByDate}> date created </a>
-          <a href='#' className="sort-options"> score </a>
+          <a href='#' className="sort-options" onClick={this.sortByScore}> score </a>
         </div>
         {this.state.linksInfo && <LinkList info={this.state.linksInfo} />}
       </div>

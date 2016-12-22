@@ -4,7 +4,6 @@ import './styles/Link.css';
 const Link = ({data, index}) => {
   // Use a default question mark image if no image is provided
   const image = data.thumbnail === 'self' || data.thumbnail === 'default' ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Blue_Question.svg/128px-Blue_Question.svg.png' : data.thumbnail;
-  console.log('data', data);
 
   return (
     <div className="link-container">
