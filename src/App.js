@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      subreddits: ['front'],
+      subreddits: ['front-page'],
       linksInfo: false,
       inputText: ''
     }
@@ -25,7 +25,7 @@ class App extends React.Component {
 
   submitNewTopic() {
     // There is a different request format if it is the front page vs. other subreddits
-    let urlChunk = this.state.inputText === 'front' ? `` : `r/${this.state.inputText}`
+    let urlChunk = this.state.inputText === 'front-page' ? `` : `r/${this.state.inputText}`
 
     axios.get(`http://www.reddit.com/${urlChunk}.json?raw_json=1`)
     .then( res => {
@@ -61,7 +61,7 @@ class App extends React.Component {
           // Change the front page links subreddit property to be 'front' so that remove button will still work
           return {
             kind: "t3",
-            data: Object.assign({}, child.data, {subreddit: 'front'})
+            data: Object.assign({}, child.data, {subreddit: 'front-page'})
           }
         })
       });
@@ -70,9 +70,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Hello Wonder Workshop!</h2>
+      <div>
+        <div className="app-header">
+          <h2 className="header-text">Subreddit Viewer</h2>
         </div>
         <div className="topics-container">
           <div className="input">
@@ -85,6 +85,7 @@ class App extends React.Component {
             />
             <button className="submit-button" onClick={this.submitNewTopic}>+</button>
           </div>
+          <h3 className="subreddit-label"> Current Subreddits -> </h3>
           <TopicList topics={this.state.subreddits} removeTopic={this.removeTopic}/>
         </div>
         {this.state.linksInfo && <LinkList info={this.state.linksInfo} />}

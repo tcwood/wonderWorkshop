@@ -1,12 +1,16 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
+.app-header {
   background-color: #222;
-  height: 50px;
+  height: 30px;
   padding: 20px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-text {
+  font-size: 40px;
+  font-weight: lighter;
 }
 
 .topics-container {
@@ -18,6 +22,7 @@
 .input {
   border-radius: 10px;
   background-color: #bad6b1;
+  margin-left: 5px;
 }
 
 .input-box {
@@ -39,4 +44,10 @@
   line-height: 10px;
   background-color: #7ea566;
   color: white;
+}
+
+.subreddit-label {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: lighter;
 }
